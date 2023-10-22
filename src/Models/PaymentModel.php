@@ -2,33 +2,22 @@
 
 namespace Nos\YooKassa\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $id
- * @property string $abbr
- * @property string $locale
- * @property string $name
- * @property bool $active
- *
- * @method Builder ofAbbr(string $value)
- * @method Builder active()
+ * @property string $id
+ * @property string $status
+ * @property float $amount
+ * @property string $currency
+ * @property string $description
+ * @property array $metadata
+ * @property int $recipient_account_id
+ * @property int $recipient_gateway_id
+ * @property bool $refundable
+ * @property bool $test
  */
 final class PaymentModel extends Model
 {
-    /**
-     * Columns available for sorting
-     * @var array
-     */
-    protected $sortable = [
-        'id',
-        'abbr',
-        'locale',
-        'name',
-        'active'
-    ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -36,18 +25,14 @@ final class PaymentModel extends Model
      */
     protected $fillable = [
         'id',
-        'abbr',
-        'locale',
-        'name',
-        'active'
+        'status',
+        'amount',
+        'currency',
+        'description',
+        'metadata',
+        'recipient_account_id',
+        'recipient_gateway_id',
+        'refundable',
+        'test'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-    ];
-
 }

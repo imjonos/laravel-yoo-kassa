@@ -19,7 +19,7 @@ use YooKassa\Common\Exceptions\UnauthorizedException;
 
 class YooKassa
 {
-    public function __construct(private PaymentService $paymentService)
+    public function __construct(private readonly PaymentService $paymentService)
     {
     }
 
