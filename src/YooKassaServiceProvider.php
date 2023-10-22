@@ -5,6 +5,7 @@ namespace Nos\YooKassa;
 use Illuminate\Support\ServiceProvider;
 use Nos\YooKassa\Interfaces\Repositories\PaymentRepositoryInterface;
 use Nos\YooKassa\Repositories\PaymentRepository;
+use Nos\YooKassa\Services\PaymentService;
 use YooKassa\Client;
 
 final class YooKassaServiceProvider extends ServiceProvider
@@ -16,10 +17,7 @@ final class YooKassaServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadTranslationsFrom(resource_path('lang/vendor/nos/yookassa'), 'nos.yookassa');
-        $this->loadViewsFrom(resource_path('views/vendor/nos/yookassa'), 'nos.yookassa');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-        // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
@@ -36,21 +34,6 @@ final class YooKassaServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/yookassa.php' => config_path('yookassa.php'),
         ], 'yookassa.config');
-
-        // Publishing the views.
-        $this->publishes([
-            __DIR__ . '/../resources/views' => base_path('resources/views/vendor/nos/yookassa')
-        ], 'yookassa.views');
-
-        // Publishing the js.
-        $this->publishes([
-            __DIR__ . '/../resources/js' => base_path('resources/js/vendor/nos/yookassa'),
-        ], 'yookassa.js');
-
-        // Publishing the translation files.
-        $this->publishes([
-            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/nos/yookassa'),
-        ], 'yookassa.lang');
 
         // Publishing migrations
         $this->publishes([
@@ -76,8 +59,8 @@ final class YooKassaServiceProvider extends ServiceProvider
             return new $client();
         });
 
-        $this->app->singleton('yookassa', function () {
-            return new YooKassa();
+        $this->app->singleton('YooKassa', function () {
+            return new YooKassa(app(PaymentService::class));
         });
     }
 

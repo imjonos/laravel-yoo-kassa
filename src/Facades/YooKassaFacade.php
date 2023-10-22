@@ -13,6 +13,6 @@ class YooKassaFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'yookassa';
+        return 'YooKassa';
     }
 }
