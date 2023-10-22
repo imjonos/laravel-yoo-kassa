@@ -1,0 +1,46 @@
+{
+    "name": "imjonos/laravel-yoo-kassa",
+    "description": ":description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eugeny Nosenko",
+            "email": "info@toprogram.ru",
+            "homepage": "https://toprogram.ru"
+        }
+    ],
+    "homepage": "https://github.com/imjonos/laravel-yoo-kassa",
+    "keywords": [
+        "Laravel",
+        "YooKassa"
+    ],
+    "require": {
+        "php": ">=8.1",
+        "illuminate/support": "~9|~10",
+        "imjonos/laravel-base-service": "*",
+        "yoomoney/yookassa-sdk-php": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nos\\YooKassa\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nos\\YooKassa\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nos\\YooKassa\\YooKassaServiceProvider"
+            ],
+            "aliases": {
+                "YooKassa": "Nos\\YooKassa\\Facades\\YooKassaFacade"
+            }
+        }
+    }
+}
