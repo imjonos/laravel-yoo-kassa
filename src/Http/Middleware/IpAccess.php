@@ -25,9 +25,11 @@ final class IpAccess
             '77.75.154.128/25',
             '2a02:5180::/32'
         ];
-        foreach ($ips as $ip) {
-            if (!$this->ipInRange($request->ip(), $ip)) {
-                abort(404, 'Not found!');
+        if (app()->isProduction()) {
+            foreach ($ips as $ip) {
+                if (!$this->ipInRange($request->ip(), $ip)) {
+                    abort(404, 'Not found!');
+                }
             }
         }
 
