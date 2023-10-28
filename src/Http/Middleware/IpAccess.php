@@ -1,6 +1,6 @@
 <?php
 
-namespace Nos\YooKassa\Http\Middleware;
+namespace Nos\Yookassa\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

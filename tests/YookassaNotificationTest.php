@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Nos\YooKassa\Enums\Currency;
-use Nos\YooKassa\Models\YookassaPayment;
+use Nos\Yookassa\Enums\Currency;
+use Nos\Yookassa\Models\YookassaPayment;
 use Tests\TestCase;
 
-class YooKassaNotificationTest extends TestCase
+class YookassaNotificationTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -1,12 +1,13 @@
 <?php
 
-namespace Nos\YooKassa\Http\Controllers;
+namespace Nos\Yookassa\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Nos\YooKassa\Enums\PaymentStatus;
-use Nos\YooKassa\Http\Requests\IndexRequest;
-use Nos\YooKassa\Services\PaymentService;
+use Nos\Yookassa\Enums\PaymentStatus;
+use Nos\Yookassa\Events\YooKassaPaymentNotification;
+use Nos\Yookassa\Http\Requests\IndexRequest;
+use Nos\Yookassa\Services\PaymentService;
 use YooKassa\Model\Notification\NotificationCanceled;
 use YooKassa\Model\Notification\NotificationEventType;
 use YooKassa\Model\Notification\NotificationSucceeded;
@@ -14,7 +15,7 @@ use YooKassa\Model\Notification\NotificationWaitingForCapture;
 
 class NotificationController extends Controller
 {
-    public function __construct(private readonly PaymentService $service)
+    public function __construct(private readonly PaymentService $paymentService)
     {
     }
 
@@ -31,7 +32,9 @@ class NotificationController extends Controller
 
         $payment = $notification->getObject();
         $status = PaymentStatus::tryFrom($payment->getStatus());
-        $this->service->setStatus($payment->getId(), $status);
+        $this->paymentService->setStatus($payment->getId(), $status);
+        $yookassaPayment = $this->paymentService->find($payment->getId());
+        YooKassaPaymentNotification::dispatch($yookassaPayment);
 
         return response()->json();
     }

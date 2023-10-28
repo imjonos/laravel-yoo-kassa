@@ -1,6 +1,6 @@
 <?php
 
-namespace Nos\YooKassa\Models;
+namespace Nos\Yookassa\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

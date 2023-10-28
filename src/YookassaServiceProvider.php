@@ -1,14 +1,14 @@
 <?php
 
-namespace Nos\YooKassa;
+namespace Nos\Yookassa;
 
 use Illuminate\Support\ServiceProvider;
-use Nos\YooKassa\Interfaces\Repositories\PaymentRepositoryInterface;
-use Nos\YooKassa\Repositories\PaymentRepository;
-use Nos\YooKassa\Services\PaymentService;
+use Nos\Yookassa\Interfaces\Repositories\PaymentRepositoryInterface;
+use Nos\Yookassa\Repositories\PaymentRepository;
+use Nos\Yookassa\Services\PaymentService;
 use YooKassa\Client;
 
-final class YooKassaServiceProvider extends ServiceProvider
+final class YookassaServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -67,8 +67,8 @@ final class YooKassaServiceProvider extends ServiceProvider
             return $client;
         });
 
-        $this->app->singleton('YooKassa', function () {
-            return new YooKassa(app(PaymentService::class));
+        $this->app->singleton('Yookassa', function () {
+            return new Yookassa(app(PaymentService::class));
         });
     }
 

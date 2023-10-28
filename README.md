@@ -1,4 +1,4 @@
-# Laravel YooKassa
+# Laravel Yookassa
 
 # MIT License
 

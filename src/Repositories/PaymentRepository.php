@@ -1,10 +1,10 @@
 <?php
 
-namespace Nos\YooKassa\Repositories;
+namespace Nos\Yookassa\Repositories;
 
 use Nos\BaseRepository\EloquentRepository;
-use Nos\YooKassa\Interfaces\Repositories\PaymentRepositoryInterface;
-use Nos\YooKassa\Models\YookassaPayment;
+use Nos\Yookassa\Interfaces\Repositories\PaymentRepositoryInterface;
+use Nos\Yookassa\Models\YookassaPayment;
 
 /**
  * @method YookassaPayment getModel()
@@ -18,5 +18,11 @@ final class PaymentRepository extends EloquentRepository implements PaymentRepos
         return $this->getModel()
             ->findOrFail($id)
             ->update($data);
+    }
+
+    public function findByUuid(string $id): ?YookassaPayment
+    {
+        return $this->getModel()
+            ->find($id);
     }
 }

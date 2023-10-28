@@ -3,10 +3,10 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Nos\YooKassa\Facades\YooKassaFacade;
+use Nos\Yookassa\Facades\YookassaFacade;
 use Tests\TestCase;
 
-class YooKassaTest extends TestCase
+class YookassaTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,7 +17,7 @@ class YooKassaTest extends TestCase
      */
     public function testCreatePayment(): void
     {
-        $model = YooKassaFacade::createPayment(10, 'test');
+        $model = YookassaFacade::createPayment(10, 'test');
         $this->assertNotEmpty($model);
     }
 }

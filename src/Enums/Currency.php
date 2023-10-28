@@ -1,6 +1,6 @@
 <?php
 
-namespace Nos\YooKassa\Enums;
+namespace Nos\Yookassa\Enums;
 
 enum Currency
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nos\YooKassa\Services;
+namespace Nos\Yookassa\Services;
 
 use Nos\YooKassa\Enums\Currency;
 use Nos\YooKassa\Enums\PaymentStatus;
@@ -79,6 +79,11 @@ final class PaymentService
             'refundable' => $payment->getRefundable(),
             'test' => $payment->getTest()
         ]);
+    }
+
+    public function find(string $id): ?YookassaPayment
+    {
+        return $this->paymentRepository->findByUuid($id);
     }
 
     public function setStatus(string $id, PaymentStatus $status): bool

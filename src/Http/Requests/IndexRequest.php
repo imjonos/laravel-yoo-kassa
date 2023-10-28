@@ -1,6 +1,6 @@
 <?php
 
-namespace Nos\YooKassa\Http\Requests;
+namespace Nos\Yookassa\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
