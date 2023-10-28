@@ -52,11 +52,19 @@ final class YooKassaServiceProvider extends ServiceProvider
 
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
 
+        $this->app->bind(PaymentService::class, function () {
+            return new PaymentService(
+                app(Client::class),
+                app(PaymentRepositoryInterface::class),
+                config('yookassa.return_url')
+            );
+        });
+
         $this->app->bind(Client::class, function () {
             $client = new Client();
             $client->setAuth(config('yookassa.shop_id'), config('yookassa.api_key'));
 
-            return new $client();
+            return $client;
         });
 
         $this->app->singleton('YooKassa', function () {

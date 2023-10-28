@@ -3,7 +3,12 @@
 namespace Nos\YooKassa\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Nos\YooKassa\Enums\Currency;
+use Nos\YooKassa\Models\YookassaPayment;
 
+/**
+ * @method static YookassaPayment CreatePayment(float $amount, string $description = '', Currency $currency = Currency::RUB, bool $capture = true)
+ */
 class YooKassaFacade extends Facade
 {
     /**

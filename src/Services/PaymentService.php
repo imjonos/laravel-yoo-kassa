@@ -5,7 +5,7 @@ namespace Nos\YooKassa\Services;
 use Nos\YooKassa\Enums\Currency;
 use Nos\YooKassa\Enums\PaymentStatus;
 use Nos\YooKassa\Interfaces\Repositories\PaymentRepositoryInterface;
-use Nos\YooKassa\Models\PaymentModel;
+use Nos\YooKassa\Models\YookassaPayment;
 use YooKassa\Client;
 use YooKassa\Common\Exceptions\ApiConnectionException;
 use YooKassa\Common\Exceptions\ApiException;
@@ -24,8 +24,11 @@ use YooKassa\Common\Exceptions\UnauthorizedException;
  */
 final class PaymentService
 {
-    public function __construct(private Client $client, private PaymentRepositoryInterface $paymentRepository)
-    {
+    public function __construct(
+        private readonly Client $client,
+        private readonly PaymentRepositoryInterface $paymentRepository,
+        private readonly string $returnUrl
+    ) {
     }
 
     /**
@@ -46,7 +49,7 @@ final class PaymentService
         string $description = '',
         Currency $currency = Currency::RUB,
         bool $capture = true
-    ): PaymentModel {
+    ): YookassaPayment {
         $payment = $this->client->createPayment(
             array(
                 'amount' => array(
@@ -55,7 +58,7 @@ final class PaymentService
                 ),
                 'confirmation' => array(
                     'type' => 'redirect',
-                    'return_url' => config('yookassa.return_url'),
+                    'return_url' => $this->returnUrl,
                 ),
                 'capture' => $capture,
                 'description' => $description,
@@ -65,11 +68,12 @@ final class PaymentService
 
         return $this->paymentRepository->create([
             'id' => $payment->getId(),
+            'confirmation_url' => $payment->getConfirmation()->getConfirmationUrl(),
             'status' => $payment->getStatus(),
             'amount' => $payment->getAmount()->getValue(),
             'currency' => $payment->getAmount()->getCurrency(),
             'description' => $payment->getDescription(),
-            'metadata' => $payment->getMetadata()->toArray(),
+            'metadata' => json_encode($payment->getMetadata() ? $payment->getMetadata()->toArray() : []),
             'recipient_account_id' => $payment->getRecipient()->getAccountId(),
             'recipient_gateway_id' => $payment->getRecipient()->getGatewayId(),
             'refundable' => $payment->getRefundable(),

@@ -4,14 +4,14 @@ namespace Nos\YooKassa\Repositories;
 
 use Nos\BaseRepository\EloquentRepository;
 use Nos\YooKassa\Interfaces\Repositories\PaymentRepositoryInterface;
-use Nos\YooKassa\Models\PaymentModel;
+use Nos\YooKassa\Models\YookassaPayment;
 
 /**
- * @method PaymentModel getModel()
+ * @method YookassaPayment getModel()
  */
 final class PaymentRepository extends EloquentRepository implements PaymentRepositoryInterface
 {
-    protected string $class = PaymentModel::class;
+    protected string $class = YookassaPayment::class;
 
     public function updateByUuid(string $id, array $data): bool
     {

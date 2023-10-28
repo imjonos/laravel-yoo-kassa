@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('yookassa_payments', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('confirmation_url')->nullable();
             $table->string('status')->nullable();
             $table->unsignedFloat('amount');
             $table->string('currency');

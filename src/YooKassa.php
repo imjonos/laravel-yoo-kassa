@@ -3,7 +3,7 @@
 namespace Nos\YooKassa;
 
 use Nos\YooKassa\Enums\Currency;
-use Nos\YooKassa\Models\PaymentModel;
+use Nos\YooKassa\Models\YookassaPayment;
 use Nos\YooKassa\Services\PaymentService;
 use YooKassa\Common\Exceptions\ApiConnectionException;
 use YooKassa\Common\Exceptions\ApiException;
@@ -41,7 +41,7 @@ class YooKassa
         string $description = '',
         Currency $currency = Currency::RUB,
         bool $capture = true
-    ): PaymentModel {
+    ): YookassaPayment {
         return $this->paymentService->create($amount, $description, $currency, $capture);
     }
 }

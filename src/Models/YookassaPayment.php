@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property string $id
+ * @property string $confirmation_url
  * @property string $status
  * @property float $amount
  * @property string $currency
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $refundable
  * @property bool $test
  */
-final class PaymentModel extends Model
+final class YookassaPayment extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -25,6 +26,7 @@ final class PaymentModel extends Model
      */
     protected $fillable = [
         'id',
+        'confirmation_url',
         'status',
         'amount',
         'currency',
