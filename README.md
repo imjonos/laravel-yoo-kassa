@@ -21,7 +21,7 @@ YOOKASSA_API_KEY= <br>
 YOOKASSA_RETURN_URL= <br>
 
 ```php
-//Фасад <br>
+//Фасад
 use Nos\Yookassa\Facades\YookassaFacade;
 $yookassaPayment = YookassaFacade::createPayment(10, 'test'); 
 
