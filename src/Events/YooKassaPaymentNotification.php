@@ -5,7 +5,7 @@ namespace Nos\Yookassa\Events;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Nos\YooKassa\Models\YookassaPayment;
+use Nos\Yookassa\Models\YookassaPayment;
 
 final class YooKassaPaymentNotification
 {

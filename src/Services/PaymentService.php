@@ -2,10 +2,10 @@
 
 namespace Nos\Yookassa\Services;
 
-use Nos\YooKassa\Enums\Currency;
-use Nos\YooKassa\Enums\PaymentStatus;
-use Nos\YooKassa\Interfaces\Repositories\PaymentRepositoryInterface;
-use Nos\YooKassa\Models\YookassaPayment;
+use Nos\Yookassa\Enums\Currency;
+use Nos\Yookassa\Enums\PaymentStatus;
+use Nos\Yookassa\Interfaces\Repositories\PaymentRepositoryInterface;
+use Nos\Yookassa\Models\YookassaPayment;
 use YooKassa\Client;
 use YooKassa\Common\Exceptions\ApiConnectionException;
 use YooKassa\Common\Exceptions\ApiException;

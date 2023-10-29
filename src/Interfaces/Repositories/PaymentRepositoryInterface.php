@@ -3,7 +3,7 @@
 namespace Nos\Yookassa\Interfaces\Repositories;
 
 use Nos\BaseRepository\Interfaces\EloquentRepositoryInterface;
-use Nos\YooKassa\Models\YookassaPayment;
+use Nos\Yookassa\Models\YookassaPayment;
 
 interface PaymentRepositoryInterface extends EloquentRepositoryInterface
 {
