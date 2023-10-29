@@ -7,7 +7,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Nos\Yookassa\Models\YookassaPayment;
 
-final class YooKassaPaymentNotification
+final class YookassaPaymentNotification
 {
     use Dispatchable;
     use InteractsWithSockets;

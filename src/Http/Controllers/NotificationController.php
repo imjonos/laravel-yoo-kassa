@@ -5,7 +5,7 @@ namespace Nos\Yookassa\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Nos\Yookassa\Enums\PaymentStatus;
-use Nos\Yookassa\Events\YooKassaPaymentNotification;
+use Nos\Yookassa\Events\YookassaPaymentNotification;
 use Nos\Yookassa\Http\Requests\IndexRequest;
 use Nos\Yookassa\Services\PaymentService;
 use YooKassa\Model\Notification\NotificationCanceled;
@@ -34,7 +34,7 @@ final class NotificationController extends Controller
         $status = PaymentStatus::tryFrom($payment->getStatus());
         $this->paymentService->setStatus($payment->getId(), $status);
         $yookassaPayment = $this->paymentService->find($payment->getId());
-        YooKassaPaymentNotification::dispatch($yookassaPayment);
+        YookassaPaymentNotification::dispatch($yookassaPayment);
 
         return response()->json();
     }
