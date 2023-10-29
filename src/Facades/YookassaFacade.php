@@ -7,7 +7,7 @@ use Nos\Yookassa\Enums\Currency;
 use Nos\Yookassa\Models\YookassaPayment;
 
 /**
- * @method static YookassaPayment CreatePayment(float $amount, string $description = '', Currency $currency = Currency::RUB, bool $capture = true)
+ * @method static YookassaPayment createPayment(float $amount, string $description = '', Currency $currency = Currency::RUB, bool $capture = true)
  */
 final class YookassaFacade extends Facade
 {
