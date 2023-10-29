@@ -55,9 +55,9 @@ $yookassaPayment = $service->createPayment(10, 'test');
 namespace App\Providers;
 class EventServiceProvider extends ServiceProvider
 ...
-    protected $listen = [<br>
-        YooKassaPaymentNotification::class => [<br>
-        YookassaPaymentStatus::class<br>
+    protected $listen = [
+        YooKassaPaymentNotification::class => [
+        YookassaPaymentStatus::class
     ]
 ];
 ...
