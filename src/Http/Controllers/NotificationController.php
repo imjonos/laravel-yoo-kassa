@@ -13,7 +13,7 @@ use YooKassa\Model\Notification\NotificationEventType;
 use YooKassa\Model\Notification\NotificationSucceeded;
 use YooKassa\Model\Notification\NotificationWaitingForCapture;
 
-class NotificationController extends Controller
+final class NotificationController extends Controller
 {
     public function __construct(private readonly PaymentService $paymentService)
     {

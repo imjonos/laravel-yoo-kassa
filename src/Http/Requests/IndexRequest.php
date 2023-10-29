@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class IndexRequest
  * @package Nos\CRUD
  */
-class IndexRequest extends FormRequest
+final class IndexRequest extends FormRequest
 {
     /**
      * authorize

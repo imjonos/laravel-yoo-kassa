@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Nos\Yookassa\Facades\YookassaFacade;
 use Tests\TestCase;
 
-class YookassaTest extends TestCase
+final class YookassaTest extends TestCase
 {
     use RefreshDatabase;
 

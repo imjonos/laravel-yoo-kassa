@@ -9,7 +9,7 @@ use Nos\YooKassa\Models\YookassaPayment;
 /**
  * @method static YookassaPayment CreatePayment(float $amount, string $description = '', Currency $currency = Currency::RUB, bool $capture = true)
  */
-class YookassaFacade extends Facade
+final class YookassaFacade extends Facade
 {
     /**
      * Get the registered name of the component.

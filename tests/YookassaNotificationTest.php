@@ -7,7 +7,7 @@ use Nos\Yookassa\Enums\Currency;
 use Nos\Yookassa\Models\YookassaPayment;
 use Tests\TestCase;
 
-class YookassaNotificationTest extends TestCase
+final class YookassaNotificationTest extends TestCase
 {
     use RefreshDatabase;
 

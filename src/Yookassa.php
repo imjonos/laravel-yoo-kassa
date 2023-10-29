@@ -17,7 +17,7 @@ use YooKassa\Common\Exceptions\ResponseProcessingException;
 use YooKassa\Common\Exceptions\TooManyRequestsException;
 use YooKassa\Common\Exceptions\UnauthorizedException;
 
-class Yookassa
+final class Yookassa
 {
     public function __construct(private readonly PaymentService $paymentService)
     {

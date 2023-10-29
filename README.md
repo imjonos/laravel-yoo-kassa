@@ -1,5 +1,79 @@
 # Laravel Yookassa
 
+## О пакете
+
+Интеграция Yookassa на основе официального SDK yoomoney/yookassa-sdk-php.<br>
+Предоставляет URL для уведомлений /yookassa/notifications<br>
+Возвращает модель платежа Nos\YooKassa\Models\YookassaPayment<br>
+Соьытие о смене статуса Nos\Yookassa\Events\YooKassaPaymentNotification<br>
+Привязка к плательщику на стороне приложения.
+
+## Установка
+
+composer require imjonos/laravel-yoo-kassa
+
+## Как использовать
+
+Добавить в .env <br>
+
+YOOKASSA_SHOP_ID= <br>
+YOOKASSA_API_KEY= <br>
+YOOKASSA_RETURN_URL= <br>
+
+```php
+//Фасад <br>
+use Nos\Yookassa\Facades\YookassaFacade;
+$yookassaPayment = YookassaFacade::createPayment(10, 'test'); 
+
+//Сервис
+$service = app(Nos\YooKassa\Services\PaymentService::class);
+$yookassaPayment = $service->createPayment(10, 'test');
+```
+
+```php
+Класс YookassaPayment
+@property string $id
+@property string $confirmation_url
+@property string $status
+@property float $amount
+@property string $currency
+@property string $description
+@property array $metadata
+@property int $recipient_account_id
+@property int $recipient_gateway_id
+@property bool $refundable
+@property bool $test
+```
+
+Для приема уведомлений нужно добавить URL
+
+![img.png](img.png)
+
+И подписаться на событие Nos\Yookassa\Events\YooKassaPaymentNotification<br>
+
+```php
+namespace App\Providers;
+class EventServiceProvider extends ServiceProvider
+...
+    protected $listen = [<br>
+        YooKassaPaymentNotification::class => [<br>
+        YookassaPaymentStatus::class<br>
+    ]
+];
+...
+```
+
+```php
+namespace App\Listeners;
+class YookassaPaymentStatus implements ShouldQueue
+...
+public function handle(YooKassaPaymentNotification $event): void
+{
+    if ($event->payment->status === PaymentStatus::SUCCEEDED->value) {
+    }
+}
+```
+
 # MIT License
 
 Copyright (c) 2023 Eugeny Nosenko
