@@ -24,6 +24,10 @@ final class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type' => ['string', 'required'],
+            'event' => ['string', 'required'],
+            'object' => ['array', 'required'],
+
         ];
     }
 }
