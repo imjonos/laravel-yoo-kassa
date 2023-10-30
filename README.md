@@ -5,7 +5,7 @@
 Интеграция Yookassa на основе SDK yoomoney/yookassa-sdk-php.<br>
 Предоставляет URL для уведомлений /yookassa/notifications<br>
 Возвращает модель платежа Nos\Yookassa\Models\YookassaPayment<br>
-Собьытие о смене статуса Nos\Yookassa\Events\YooKassaPaymentNotification<br>
+Событие о смене статуса Nos\Yookassa\Events\YooKassaPaymentNotification<br>
 Привязка к плательщику на стороне приложения.
 
 ## Установка
