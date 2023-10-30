@@ -62,7 +62,7 @@ $yookassaPayment = $service->createPayment(10, 'test');
 
 ![img.png](img.png)
 
-И подписаться на событие Nos\Yookassa\Events\YooKassaPaymentNotification<br>
+И подписаться на событие Nos\Yookassa\Events\YookassaPaymentNotification<br>
 
 ```php
 namespace App\Providers;
