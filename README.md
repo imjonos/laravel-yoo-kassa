@@ -10,7 +10,20 @@
 
 ## Установка
 
+```bash
 composer require imjonos/laravel-yoo-kassa
+```
+
+```bash
+php artisan vendor:publish --tag=yookassa.migrations
+php artisan migrate
+```
+
+Если нужно
+
+```bash
+php artisan vendor:publish --tag=yookassa.config
+```
 
 ## Как использовать
 
