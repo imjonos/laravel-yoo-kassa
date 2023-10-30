@@ -69,7 +69,7 @@ namespace App\Providers;
 class EventServiceProvider extends ServiceProvider
 ...
     protected $listen = [
-        YooKassaPaymentNotification::class => [
+        YookassaPaymentNotification::class => [
         YookassaPaymentStatus::class
     ]
 ];
@@ -80,7 +80,7 @@ class EventServiceProvider extends ServiceProvider
 namespace App\Listeners;
 class YookassaPaymentStatus implements ShouldQueue
 ...
-public function handle(YooKassaPaymentNotification $event): void
+public function handle(YookassaPaymentNotification $event): void
 {
     if ($event->payment->status === PaymentStatus::SUCCEEDED->value) {
     }
