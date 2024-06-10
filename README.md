@@ -5,7 +5,7 @@
 Интеграция Yookassa на основе SDK yoomoney/yookassa-sdk-php.<br>
 Предоставляет URL для уведомлений /yookassa/notifications<br>
 Возвращает модель платежа Nos\Yookassa\Models\YookassaPayment<br>
-Соьытие о смене статуса Nos\Yookassa\Events\YooKassaPaymentNotification<br>
+Событие о смене статуса Nos\Yookassa\Events\YooKassaPaymentNotification<br>
 Привязка к плательщику на стороне приложения.
 
 ## Установка
@@ -62,14 +62,14 @@ $yookassaPayment = $service->createPayment(10, 'test');
 
 ![img.png](img.png)
 
-И подписаться на событие Nos\Yookassa\Events\YooKassaPaymentNotification<br>
+И подписаться на событие Nos\Yookassa\Events\YookassaPaymentNotification<br>
 
 ```php
 namespace App\Providers;
 class EventServiceProvider extends ServiceProvider
 ...
     protected $listen = [
-        YooKassaPaymentNotification::class => [
+        YookassaPaymentNotification::class => [
         YookassaPaymentStatus::class
     ]
 ];
@@ -80,7 +80,7 @@ class EventServiceProvider extends ServiceProvider
 namespace App\Listeners;
 class YookassaPaymentStatus implements ShouldQueue
 ...
-public function handle(YooKassaPaymentNotification $event): void
+public function handle(YookassaPaymentNotification $event): void
 {
     if ($event->payment->status === PaymentStatus::SUCCEEDED->value) {
     }
