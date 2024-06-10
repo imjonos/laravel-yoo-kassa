@@ -18,6 +18,7 @@ use YooKassa\Common\Exceptions\NotFoundException;
 use YooKassa\Common\Exceptions\ResponseProcessingException;
 use YooKassa\Common\Exceptions\TooManyRequestsException;
 use YooKassa\Common\Exceptions\UnauthorizedException;
+use YooKassa\Model\Receipt\ReceiptItem;
 
 /**
  * @method PaymentRepositoryInterface getRepository()
@@ -51,6 +52,15 @@ final class PaymentService
         Currency $currency = Currency::RUB,
         bool $capture = true
     ): YookassaPayment {
+        $receiptItem = new ReceiptItem();
+        $receiptItem->setQuantity(1);
+        $receiptItem->setDescription($description);
+        $receiptItem->setPrice([
+            'value' => $amount,
+            'currency' => $currency->name,
+        ]);
+        $receiptItem->setVatCode(1);
+
         $payment = $this->client->createPayment(
             [
                 'amount' => [
@@ -68,13 +78,7 @@ final class PaymentService
                         'email' => $email,
                     ],
                     'items' => [
-                        'amount' => [
-                            'value' => $amount,
-                            'currency' => $currency->name,
-                        ],
-                        'description' => $description,
-                        'quantity' => 1,
-                        'vat_code' => 1,
+                        $receiptItem
                     ]
                 ],
             ],
