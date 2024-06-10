@@ -47,22 +47,37 @@ final class PaymentService
     public function create(
         float $amount,
         string $description = '',
+        string $email = '',
         Currency $currency = Currency::RUB,
         bool $capture = true
     ): YookassaPayment {
         $payment = $this->client->createPayment(
-            array(
-                'amount' => array(
+            [
+                'amount' => [
                     'value' => $amount,
                     'currency' => $currency->name,
-                ),
-                'confirmation' => array(
+                ],
+                'confirmation' => [
                     'type' => 'redirect',
                     'return_url' => $this->returnUrl,
-                ),
+                ],
                 'capture' => $capture,
                 'description' => $description,
-            ),
+                'receipt' => [
+                    'customer' => [
+                        'email' => $email,
+                    ],
+                    'items' => [
+                        'amount' => [
+                            'value' => $amount,
+                            'currency' => $currency->name,
+                        ],
+                        'description' => $description,
+                        'quantity' => 1,
+                        'vat_code' => 1,
+                    ]
+                ],
+            ],
             uniqid('', true)
         );
 

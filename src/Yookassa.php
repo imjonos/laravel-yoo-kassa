@@ -39,9 +39,10 @@ final class Yookassa
     public function createPayment(
         float $amount,
         string $description = '',
+        string $email = '',
         Currency $currency = Currency::RUB,
         bool $capture = true
     ): YookassaPayment {
-        return $this->paymentService->create($amount, $description, $currency, $capture);
+        return $this->paymentService->create($amount, $description, $email, $currency, $capture);
     }
 }
