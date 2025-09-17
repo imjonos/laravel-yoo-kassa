@@ -1,5 +1,7 @@
 # Laravel Yookassa
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/imjonos/laravel-yoo-kassa.svg?style=flat-square)](https://packagist.org/packages/imjonos/laravel-yoo-kassa)  [![Total Downloads](https://img.shields.io/packagist/dt/imjonos/laravel-yoo-kassa.svg?style=flat-square)](https://packagist.org/packages/imjonos/laravel-yoo-kassa)
+
 ## О пакете
 
 Интеграция Yookassa на основе SDK yoomoney/yookassa-sdk-php.<br>
