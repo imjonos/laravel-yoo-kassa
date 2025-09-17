@@ -1,6 +1,6 @@
 {
     "name": "imjonos/laravel-yoo-kassa",
-    "description": ":description",
+    "description": "Laravel YooKassa package based on official PHP SDK",
     "license": "MIT",
     "authors": [
         {
