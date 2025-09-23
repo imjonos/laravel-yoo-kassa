@@ -60,6 +60,8 @@ final class PaymentService
             'currency' => $currency->name,
         ]);
         $receiptItem->setVatCode(1);
+        $receiptItem->setPaymentMode('full_payment');
+        $receiptItem->setPaymentSubject('payment');
 
         $payment = $this->client->createPayment(
             [
