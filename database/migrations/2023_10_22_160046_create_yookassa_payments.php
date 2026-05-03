@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->string('confirmation_url')->nullable();
             $table->string('status')->nullable();
-            $table->unsignedFloat('amount');
+            $table->float('amount');
             $table->string('currency');
             $table->string('description')->nullable();
             $table->json('metadata')->nullable();
