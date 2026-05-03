@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Enums;
 
 enum PaymentStatus: string
@@ -7,5 +9,5 @@ enum PaymentStatus: string
     case SUCCEEDED = 'succeeded';
     case CANCELED = 'canceled';
     case PENDING = 'pending';
-    case  WAITING_FOR_CAPTURE = 'waiting_for_capture';
+    case WAITING_FOR_CAPTURE = 'waiting_for_capture';
 }

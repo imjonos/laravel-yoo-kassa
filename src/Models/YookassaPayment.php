@@ -1,32 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property string $id
- * @property string $confirmation_url
- * @property string $status
- * @property float $amount
- * @property string $currency
- * @property string $description
- * @property array $metadata
- * @property int $recipient_account_id
- * @property int $recipient_gateway_id
- * @property bool $refundable
- * @property bool $test
- */
 final class YookassaPayment extends Model
 {
     use HasUuids;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'id',
         'confirmation_url',

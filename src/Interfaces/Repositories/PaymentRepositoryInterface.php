@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Interfaces\Repositories;
 
 use Nos\BaseRepository\Interfaces\EloquentRepositoryInterface;

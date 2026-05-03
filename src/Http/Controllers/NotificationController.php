@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Nos\Yookassa\Enums\PaymentStatus;
 use Nos\Yookassa\Events\YookassaPaymentNotification;
@@ -13,7 +17,12 @@ use YooKassa\Model\Notification\NotificationEventType;
 use YooKassa\Model\Notification\NotificationSucceeded;
 use YooKassa\Model\Notification\NotificationWaitingForCapture;
 
-final class NotificationController extends Controller
+abstract class BaseController
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+}
+
+final class NotificationController extends BaseController
 {
     public function __construct(private readonly PaymentService $paymentService)
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Services;
 
 use Nos\Yookassa\Enums\Currency;
@@ -32,19 +34,6 @@ final class PaymentService
     ) {
     }
 
-    /**
-     * @throws NotFoundException
-     * @throws ResponseProcessingException
-     * @throws ApiException
-     * @throws ExtensionNotFoundException
-     * @throws BadApiRequestException
-     * @throws AuthorizeException
-     * @throws InternalServerError
-     * @throws ForbiddenException
-     * @throws TooManyRequestsException
-     * @throws ApiConnectionException
-     * @throws UnauthorizedException
-     */
     public function create(
         float $amount,
         string $description = '',

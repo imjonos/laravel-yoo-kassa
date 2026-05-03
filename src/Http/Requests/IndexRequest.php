@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -10,17 +12,11 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 final class IndexRequest extends FormRequest
 {
-    /**
-     * authorize
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * rules
-     */
     public function rules(): array
     {
         return [

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa\Http\Middleware;
 
 use Closure;
@@ -7,13 +9,6 @@ use Illuminate\Http\Request;
 
 final class IpAccess
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param Request $request
-     * @param Closure $next
-     * @return mixed
-     */
     public function handle(Request $request, Closure $next): mixed
     {
         $ips = [
@@ -39,12 +34,12 @@ final class IpAccess
         return $next($request);
     }
 
-    private function ipInRange($ip, $range): bool
+    private function ipInRange(string $ip, string $range): bool
     {
         if (!str_contains($range, '/')) {
             $range .= '/32';
         }
-        list($range, $netmask) = explode('/', $range, 2);
+        [$range, $netmask] = explode('/', $range, 2);
         $range_decimal = ip2long($range);
         $ip_decimal = ip2long($ip);
         $wildcard_decimal = pow(2, (32 - $netmask)) - 1;

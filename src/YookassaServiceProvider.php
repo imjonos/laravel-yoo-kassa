@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Nos\Yookassa;
 
 use Illuminate\Support\ServiceProvider;
@@ -23,11 +25,6 @@ final class YookassaServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Console-specific booting.
-     *
-     * @return void
-     */
     protected function bootForConsole(): void
     {
         // Publishing the configuration file.
@@ -41,18 +38,13 @@ final class YookassaServiceProvider extends ServiceProvider
         ], 'yookassa.migrations');
     }
 
-    /**
-     * Register any package services.
-     *
-     * @return void
-     */
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/yookassa.php', 'yookassa');
 
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
 
-        $this->app->bind(PaymentService::class, function () {
+        $this->app->bind(PaymentService::class, function (): PaymentService {
             return new PaymentService(
                 app(Client::class),
                 app(PaymentRepositoryInterface::class),
@@ -60,23 +52,18 @@ final class YookassaServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind(Client::class, function () {
+        $this->app->bind(Client::class, function (): Client {
             $client = new Client();
             $client->setAuth(config('yookassa.shop_id'), config('yookassa.api_key'));
 
             return $client;
         });
 
-        $this->app->singleton('Yookassa', function () {
+        $this->app->singleton('Yookassa', function (): Yookassa {
             return new Yookassa(app(PaymentService::class));
         });
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
     public function provides(): array
     {
         return ['yookassa'];
